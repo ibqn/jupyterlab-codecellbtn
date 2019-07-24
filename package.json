@@ -1,0 +1,35 @@
+{
+  "name": "@jupyterlab/codecellbtn",
+  "version": "0.1.0",
+  "description": "Extension for adding 'run' buttons to each code cell",
+  "keywords": [
+    "jupyter",
+    "jupyterlab",
+    "jupyterlab-extension"
+  ],
+  "license": "",
+  "author": "Evgeny Bobkin",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ibqn/jupyterlab-codecellbtn.git"
+  },
+  "main": "lib/index.js",
+  "style": "style/index.css",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rimraf lib && rimraf tsconfig.tsbuildinfo",
+    "prepare": "npm run clean && npm run build",
+    "watch": "tsc -w"
+  },
+  "devDependencies": {
+    "rimraf": "^2.6.3",
+    "typescript": "^3.5.3"
+  },
+  "dependencies": {
+    "@jupyterlab/application": "^1.0.1",
+    "@types/node": "^12.6.8"
+  },
+  "jupyterlab": {
+    "extension": true
+  }
+}

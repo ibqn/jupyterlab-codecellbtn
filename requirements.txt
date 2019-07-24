@@ -1,2 +1,4 @@
 jupyter
 jupyterlab
+matplotlib
+numpy

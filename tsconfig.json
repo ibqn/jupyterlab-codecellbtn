@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "skipLibCheck": true,
+    "noEmitOnError": true,
+    "noUnusedLocals": true,
+    "lib": ["dom", "es6"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "outDir": "./lib",
+    "rootDir": "./src",
+    "jsx": "react",
+    "target": "es2017",
+    "types": []
+  },
+  "include": ["src/*"]
+}
