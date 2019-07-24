@@ -3,7 +3,7 @@ import { JupyterFrontEnd, JupyterFrontEndPlugin } from '@jupyterlab/application'
 import '../style/index.css';
 
 /**
- * Initialization data for the jupyterlab-cellcodebtn extension.
+ * Activate extension
  */
 function activate(
     app: JupyterFrontEnd,
@@ -11,6 +11,10 @@ function activate(
     console.log('JupyterLab extension jupyterlab-cellcodebtn is activated!');
 }
 
+
+/**
+ * Initialization data for the jupyterlab-cellcodebtn extension.
+ */
 const extension: JupyterFrontEndPlugin<void> = {
     id: 'jupyterlab-cellcodebtn',
     autoStart: true,
