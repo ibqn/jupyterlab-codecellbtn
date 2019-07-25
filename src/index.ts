@@ -1,4 +1,7 @@
-import { JupyterFrontEnd, JupyterFrontEndPlugin } from '@jupyterlab/application';
+import {
+    JupyterFrontEnd,
+    JupyterFrontEndPlugin,
+} from '@jupyterlab/application';
 
 import '../style/index.css';
 
