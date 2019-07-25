@@ -16,6 +16,11 @@ import {
     ReadonlyJSONObject,
 } from '@phosphor/coreutils';
 
+import {
+  Dialog,
+  showDialog,
+} from "@jupyterlab/apputils";
+
 import '../style/index.css';
 
 
@@ -67,6 +72,21 @@ class CellFooterButton {
         cellFooterButton.innerHTML = 'run';
         cellFooterButton.addEventListener('click', (event) => {
             console.log('clicked', cell);
+            showDialog({
+                body: 'Well, see title!',
+                buttons: [
+                    Dialog.cancelButton(),
+                    Dialog.okButton({ label: 'Mmmkay' })
+                ],
+                focusNodeSelector: "input",
+                title: "JupyterLab is cool!",
+            }).then((result) => {
+                if (result.button.label === "Cancel") {
+                    console.log('nope');
+                } else {
+                    console.log('yep');
+                }
+            });
         });
 
         let cellFooter = cell.node.getElementsByClassName('jp-CellFooter')[0];
