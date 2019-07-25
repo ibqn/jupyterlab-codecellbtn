@@ -6,6 +6,7 @@ import {
 import {
     INotebookTracker,
     NotebookPanel,
+    NotebookActions,
 } from '@jupyterlab/notebook';
 
 import {
@@ -17,9 +18,9 @@ import {
 } from '@phosphor/coreutils';
 
 import {
-  Dialog,
-  showDialog,
-} from "@jupyterlab/apputils";
+    CommandRegistry,
+} from '@phosphor/commands';
+
 
 import '../style/index.css';
 
@@ -51,14 +52,14 @@ class CellFooterButton {
             if (activeCell.model.type === 'code') {
                 console.log('code cell')
                 let codecell = activeCell as CodeCell;
-                this.createCellFooter(codecell);
+                this.createCellFooter(codecell, commands);
             } else {
                 console.log("something else");
             }
         }
     }
 
-    private createCellFooter(cell: CodeCell): void {
+    private createCellFooter(cell: CodeCell, commands: CommandRegistry): void {
         let cellFooterDiv = cell.node.getElementsByClassName('ccb-cellFooterContainer')[0];
         console.log('and it is', cellFooterDiv);
         if (cellFooterDiv !== undefined) {
@@ -72,21 +73,7 @@ class CellFooterButton {
         cellFooterButton.innerHTML = 'run';
         cellFooterButton.addEventListener('click', (event) => {
             console.log('clicked', cell);
-            showDialog({
-                body: 'Well, see title!',
-                buttons: [
-                    Dialog.cancelButton(),
-                    Dialog.okButton({ label: 'Mmmkay' })
-                ],
-                focusNodeSelector: "input",
-                title: "JupyterLab is cool!",
-            }).then((result) => {
-                if (result.button.label === "Cancel") {
-                    console.log('nope');
-                } else {
-                    console.log('yep');
-                }
-            });
+            commands.execute('run-select-next-edit');
         });
 
         let cellFooter = cell.node.getElementsByClassName('jp-CellFooter')[0];
@@ -115,6 +102,20 @@ function activate(app: JupyterFrontEnd, tracker: INotebookTracker): Promise<void
             return tracker.currentWidget !== null &&
                 tracker.currentWidget === app.shell.currentWidget;
         }
+
+        commands.addCommand('run-select-next-edit', {
+            label: 'Run Cell',
+            execute: args => {
+                const current = getCurrent(args);
+
+                if (current) {
+                    const { context, content } = current;
+                    NotebookActions.run(content, context.session);
+                    //current.content.mode = 'edit';
+                }
+            },
+            isEnabled,
+        });
 
         // tslint:disable:no-unused-expression
         new CellFooterButton(app, tracker);
