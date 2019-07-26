@@ -1,56 +1,50 @@
-# python stage
+# jupyterlab with extension
 
-FROM python:3.6-alpine as base
+FROM alpine:latest
+
+ENV PYTHONUNBUFFERED 1
 
 WORKDIR /app
 
-# install dependencies
-RUN apk add \
-        build-base \
-        libzmq \
+# install build dependencies
+RUN apk update && \
+        apk add \
+        ca-certificates \
+        python3 \
+        libzmq  \
+        lapack \
+        libpng \
+        freetype \
+        nodejs nodejs-npm \
+    && apk --update add --no-cache --virtual=build_dependencies \
+        python3-dev \
         musl-dev \
-        zeromq-dev && \
-    apk --update add --no-cache \
+        zeromq-dev \
         lapack-dev \
         gcc \
-        freetype-dev && \
-    apk add --no-cache --virtual .build-deps \
+        make \
+        freetype-dev \
         gfortran \
         g++ \
         libstdc++ \
         linux-headers \
-        libpng-dev
-
-RUN ln -s /usr/include/locale.h /usr/include/xlocale.h
-
-COPY . .
-
-RUN python3 -m pip install --upgrade pip && \
-    python3 -m pip wheel --no-cache-dir --no-deps \
-        --wheel-dir /wheels -r ./freezed-requirements.txt
-
-# jupyterlab with extension
-
-FROM python:3.6-alpine
-
-WORKDIR /app
-
-RUN apk add --no-cache libzmq lapack freetype && \
-    apk add --update --no-cache nodejs nodejs-npm
-
-COPY --from=base /wheels /wheels
-
-RUN python3 -m pip install --upgrade pip && \
-    python3 -m pip install --no-cache /wheels/*
+        libpng-dev \
+    && ln -s /usr/include/locale.h /usr/include/xlocale.h
 
 COPY . .
 
-RUN npm install -g npm && \
-    npm install && \
-    npm run build
-
-RUN jupyter labextension link .
+RUN python3 -m pip install --no-cache-dir --upgrade pip \
+    && python3 -m pip install --no-cache-dir --upgrade -r ./freezed-requirements.txt \
+    && npm install -g npm \
+    && npm install \
+    && npm run build \
+    && apk del --purge -r build_dependencies \
+    && rm -rf /var/cache/apk/*  \
+    && jupyter labextension link . \
+    && mkdir /notebooks  \
+    && mv *.ipynb /notebooks
 
 EXPOSE 80
+VOLUME /notebooks
 
 CMD ["jupyter", "lab", "--allow-root", "--no-browser", "--port", "80", "--ip=0.0.0.0"]

@@ -4,8 +4,11 @@ jupyter.bash
 readme.md
 screenshot.png
 
-venv/*
-node_modules/*
-.ipynb_checkpoints/*
-.vscode/*
+venv
+.git
+.gitignore
+node_modules
+npm-debug.log
+.ipynb_checkpoints
+.vscode
 .editorconfig
