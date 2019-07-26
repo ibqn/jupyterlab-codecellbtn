@@ -47,4 +47,6 @@ RUN python3 -m pip install --no-cache-dir --upgrade pip \
 EXPOSE 80
 VOLUME /notebooks
 
-CMD ["jupyter", "lab", "--allow-root", "--no-browser", "--port", "80", "--ip=0.0.0.0"]
+CMD ["jupyter", "lab", "--allow-root", "--no-browser", \
+     "--port", "80", "--ip", "0.0.0.0", \
+     "--notebook-dir", "/notebooks"]
