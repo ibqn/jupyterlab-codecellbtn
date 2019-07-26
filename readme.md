@@ -1,5 +1,8 @@
 # jupyterlab-ext
 
+![screenshot](screenshot.png)
+
+
 ## Prerequisites
 Install `JupyterLab`
 ```shell
