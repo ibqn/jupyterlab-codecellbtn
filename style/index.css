@@ -36,7 +36,7 @@
   background: var(--md-blue-400);
 }
 
-.jp-Cell .jp-CellFooter {
+.jp-CodeCell .jp-CellFooter {
   height: auto;
 }
 

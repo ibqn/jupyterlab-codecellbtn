@@ -22,16 +22,20 @@
     "watch": "tsc -w"
   },
   "devDependencies": {
+    "@types/react": "^16.8.23",
+    "@types/react-dom": "^16.8.5",
     "rimraf": "^2.6.3",
     "typescript": "^3.5.3"
   },
   "dependencies": {
-    "@jupyterlab/application": "^1.0.1",
+    "@jupyterlab/application": "^1.0.2",
     "@jupyterlab/apputils": "^1.0.2",
-    "@jupyterlab/cells": "^1.0.1",
-    "@jupyterlab/notebook": "^1.0.1",
+    "@jupyterlab/cells": "^1.0.2",
+    "@jupyterlab/notebook": "^1.0.2",
     "@phosphor/coreutils": "^1.3.1",
-    "@types/node": "^12.6.8"
+    "@types/node": "^12.6.8",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   },
   "jupyterlab": {
     "extension": true
