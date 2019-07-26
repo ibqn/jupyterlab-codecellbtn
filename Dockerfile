@@ -1,3 +1,5 @@
+# python stage
+
 FROM python:3.6-alpine as base
 WORKDIR /app
 
@@ -24,7 +26,18 @@ COPY freezed-requirements.txt  /app/
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip wheel --no-cache-dir --no-deps --wheel-dir /wheels -r /app/freezed-requirements.txt
 
+# node stage
 
+FROM node:10.16-alpine as node_base
+WORKDIR /app
+
+COPY src /app/src
+COPY style /app/style
+COPY package.json package-lock.json tsconfig.json tslint.json /app/
+
+RUN npm install && npm run build
+
+# jupyterlab with extension
 
 FROM python:3.6-alpine
 WORKDIR /app
@@ -35,6 +48,13 @@ COPY --from=base /wheels /wheels
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install --no-cache /wheels/*
 COPY function-plot.ipynb /app
+
+COPY --from=node_base /app/package.json /app
+COPY --from=node_base /app/lib  /app/lib
+
+RUN apk add --update nodejs nodejs-npm
+
+RUN jupyter labextension link .
 
 EXPOSE 80
 
