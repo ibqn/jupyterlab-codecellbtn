@@ -1,0 +1,11 @@
+Dockerfile
+requirements.txt
+jupyter.bash
+readme.md
+screenshot.png
+
+venv/*
+node_modules/*
+.ipynb_checkpoints/*
+.vscode/*
+.editorconfig

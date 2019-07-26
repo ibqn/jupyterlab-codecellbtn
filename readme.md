@@ -25,3 +25,12 @@ To rebuild the package and the JupyterLab app:
 npm run build
 jupyter lab build
 ```
+
+Build docker container
+```shell
+docker build --tag=jupyterlab_ext .
+```
+and launch it
+```shell
+docker run -p 9999:80 jupyterlab_ext
+```
