@@ -155,7 +155,7 @@ const cellFactory: JupyterFrontEndPlugin<NotebookPanel.IContentFactory> = {
     requires: [IEditorServices],
     autoStart: true,
     activate: (app: JupyterFrontEnd, editorServices: IEditorServices) => {
-        const { commands, shell } = app;
+        const commands = app.commands;
         let editorFactory = editorServices.factoryService.newInlineEditor;
         console.log("this works \\o/")
         return new ContentFactoryWithFooterButton(commands, { editorFactory });
