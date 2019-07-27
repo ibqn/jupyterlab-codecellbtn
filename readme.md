@@ -1,13 +1,21 @@
 # jupyterlab-ext
 
+A JupyterLab extension for notebook cells, which appends a 'run' button to the footer of each code cell.
+
 ![screenshot](screenshot.png)
 
-
 ## Prerequisites
-Install `JupyterLab`
+Install `JupyterLab`.
+
+If you like to install `jupyterlab` whithin the virtual environment, you can use the following script. To use this script in `Ubuntu/Debian` you might need to additionally install the following package
+```shell
+sudo apt install python3-venv
+```
+This script creates a fresh `python3` virtual environment in the folder `venv`.
 ```shell
 bash jupyter.bash
 ```
+
 ## Installation
 ```shell
 jupyter labextension install @ibqn/jupyterlab_codebtn
@@ -19,6 +27,7 @@ For a development install do the following in the repository directory:
 npm install
 npm run build
 jupyter labextension link .
+jupyter lab --watch
 ```
 To rebuild the package and the JupyterLab app:
 ```shell
