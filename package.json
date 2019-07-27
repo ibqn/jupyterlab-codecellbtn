@@ -17,6 +17,7 @@
   "style": "style/index.css",
   "scripts": {
     "build": "tsc",
+    "lint": "tslint --project tsconfig.json",
     "clean": "rimraf lib && rimraf tsconfig.tsbuildinfo",
     "prepare": "npm run clean && npm run build",
     "watch": "tsc -w"
@@ -25,6 +26,7 @@
     "@types/react": "^16.8.23",
     "@types/react-dom": "^16.8.5",
     "rimraf": "^2.6.3",
+    "tslint": "^5.18.0",
     "typescript": "^3.5.3"
   },
   "dependencies": {
