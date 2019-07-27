@@ -153,6 +153,11 @@ const cellFactory: JupyterFrontEndPlugin<NotebookPanel.IContentFactory> = {
     requires: [IEditorServices],
     autoStart: true,
     activate: (app: JupyterFrontEnd, editorServices: IEditorServices) => {
+        console.log(
+            'JupyterLab extension jupyterlab-cellcodebtn',
+            'overrides default nootbook content factory'
+        );
+
         const { commands } = app;
         let editorFactory = editorServices.factoryService.newInlineEditor;
         return new ContentFactoryWithFooterButton(commands, { editorFactory });
