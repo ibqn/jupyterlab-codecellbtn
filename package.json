@@ -7,7 +7,7 @@
     "jupyterlab",
     "jupyterlab-extension"
   ],
-  "license": "",
+  "license": "BSD-3-Clause",
   "author": "Evgeny Bobkin",
   "repository": {
     "type": "git",
