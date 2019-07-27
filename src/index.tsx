@@ -97,7 +97,6 @@ export class ContentFactoryWithFooterButton extends NotebookPanel.ContentFactory
      * Create a new cell header for the parent widget.
      */
     createCellFooter(): ICellFooter {
-        console.log('#create new cellfooter');
         return new CellFooterWithButton(this.commands);
     }
 
@@ -126,7 +125,6 @@ export class CellFooterWithButton extends ReactWidget implements ICellFooter {
                 <button
                     className={CELL_FOOTER_BUTTON_CLASS}
                     onClick={(event) => {
-                        console.log('@.@');
                         this.commands.execute('run-select-next-edit');
                     }}>
                     run
@@ -155,9 +153,8 @@ const cellFactory: JupyterFrontEndPlugin<NotebookPanel.IContentFactory> = {
     requires: [IEditorServices],
     autoStart: true,
     activate: (app: JupyterFrontEnd, editorServices: IEditorServices) => {
-        const commands = app.commands;
+        const { commands } = app;
         let editorFactory = editorServices.factoryService.newInlineEditor;
-        console.log("this works \\o/")
         return new ContentFactoryWithFooterButton(commands, { editorFactory });
     }
 };
