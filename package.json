@@ -1,5 +1,5 @@
 {
-  "name": "@jupyterlab/codecellbtn",
+  "name": "@ibqn/jupyterlab-codecellbtn",
   "version": "0.1.0",
   "description": "Extension for adding 'run' buttons to each code cell",
   "keywords": [
@@ -18,7 +18,7 @@
   "scripts": {
     "build": "tsc",
     "lint": "tslint --project tsconfig.json",
-    "clean": "rimraf lib && rimraf tsconfig.tsbuildinfo",
+    "clean": "rimraf lib",
     "prepare": "npm run clean && npm run build",
     "watch": "tsc -w"
   },

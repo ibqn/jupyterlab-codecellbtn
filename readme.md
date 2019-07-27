@@ -1,4 +1,4 @@
-# jupyterlab-ext
+# jupyterlab-codecellbtn
 
 A JupyterLab extension for notebook cells, which appends a 'run' button to the footer of each code cell.
 
@@ -18,7 +18,7 @@ bash jupyter.bash
 
 ## Installation
 ```shell
-jupyter labextension install @ibqn/jupyterlab_codebtn
+jupyter labextension install @ibqn/jupyterlab-codecellbtn
 ```
 
 ## Development
