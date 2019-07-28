@@ -62,7 +62,7 @@ function activateCommands(app: JupyterFrontEnd, tracker: INotebookTracker): Prom
                 tracker.currentWidget === app.shell.currentWidget;
         }
 
-        commands.addCommand('run-select-next-edit', {
+        commands.addCommand('run-selected-codecell', {
             label: 'Run Cell',
             execute: args => {
                 const current = getCurrent(args);
@@ -124,7 +124,7 @@ export class CellFooterWithButton extends ReactWidget implements ICellFooter {
                 <button
                     className={CELL_FOOTER_BUTTON_CLASS}
                     onClick={event => {
-                        this.commands.execute('run-select-next-edit');
+                        this.commands.execute('run-selected-codecell');
                     }}>
                     run
                 </button>
