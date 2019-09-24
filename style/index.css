@@ -36,10 +36,20 @@
     background: var(--md-blue-400);
 }
 
+.jp-CodeCell {
+    display: flex !important;
+    flex-direction: column;
+}
+
 .jp-CodeCell .jp-CellFooter {
     height: auto;
+    order: 2;
 }
 
 .jp-Cell .jp-Cell-inputWrapper {
     margin-top: 5px;
+}
+
+.jp-CodeCell .jp-Cell-outputWrapper {
+    order: 4;
 }
