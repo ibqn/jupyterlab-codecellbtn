@@ -24,14 +24,16 @@ jupyter labextension install @ibqn/jupyterlab-codecellbtn
 ## Development
 For a development install do the following in the repository directory:
 ```shell
-npm install
-npm run build
+yarn install
+yarn build
+
+source './venv/bin/activate'
 jupyter labextension link .
 jupyter lab --watch
 ```
 To rebuild the package and the JupyterLab app:
 ```shell
-npm run build
+yarn build
 jupyter lab build
 ```
 
